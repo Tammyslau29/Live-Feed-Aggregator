@@ -6,7 +6,7 @@
   </head>
   <body>
 
-    <a class="instagramLink" href="https://api.instagram.com/oauth/authorize/?client_id=d75c45e7a8de451cb38ba8c027909c66&redirect_uri=http://localhost:3000/oauth/callback?provider=instagram&response_type=code&scope=public_content">Log Into Instagram</a>
+    <a class="instagramLink" href="https://api.instagram.com/oauth/authorize/?client_id=d75c45e7a8de451cb38ba8c027909c66&redirect_uri=http://<%=host%>/oauth/callback?provider=instagram&response_type=code&scope=public_content">Log Into Instagram</a>
     <form action="/" method="post">
       <input class="hastagSearch"  name="search" type="text" placeholder="Hashtag Search Term"/>
       <input type="submit" value="search"/>

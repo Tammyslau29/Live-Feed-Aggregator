@@ -3,7 +3,7 @@ var querystring = require("querystring")
 var express = require('express');
 var request = require("request");
 var router = express.Router();
-
+var host = process.env.HOST || "localhost:3000";
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var twitterCredentials = {
@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
     }
   }, function(err, response, body){
     res.cookie("twitter_token", JSON.parse(body).access_token);
-    res.render('index', { title:"Hashtag Search", data:[] });
+    res.render('index', { title:"Hashtag Search", data:[], host: host });
   })
 });
 
@@ -35,7 +35,7 @@ router.get("/oauth/callback",function(req, res, next) {
         client_id: "d75c45e7a8de451cb38ba8c027909c66",
         client_secret: "2a480c56a6f24b5f9c186927f9bad838",
         grant_type: "authorization_code",
-        redirect_uri: "http://localhost:3000/oauth/callback?provider=instagram",
+        redirect_uri: "http://"+host+"/oauth/callback?provider=instagram",
         code: req.query.code
       }
     };
@@ -71,10 +71,9 @@ router.post("/", function(req, res, next) {
       }
       return post;
     })
-    console.log(twitterPosts)
     posts = posts.concat(twitterPosts);
     if(!token){
-      res.render("index", {title:"Hashtag Search", data: posts});
+      res.render("index", {title:"Hashtag Search", data: posts, host: host});
     }else{
       request.get({
         url:"https://api.instagram.com/v1/tags/"+ query + "/media/recent?access_token=" + token + "&count=50"
@@ -91,7 +90,7 @@ router.post("/", function(req, res, next) {
           return post
         });
         posts = posts.concat(instagramPosts);
-        res.render("index", {title:"Hashtag Search", data: posts});
+        res.render("index", {title:"Hashtag Search", data: posts, host: host});
       })
 
     }
