@@ -1,0 +1,42 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: grey;
+}
+
+a {
+  color: #00B7FF;
+}
+.postContainer{
+  border: 1px solid white;
+  margin: 10px;
+}
+.username, .profilePic{
+  display: inline;
+}
+.username{
+  color: white;
+}
+.userProfile{
+  margin: 10px;
+}
+.postImage{
+  width: 100%;
+}
+.postCaption, .dateCreated{
+  color: #d3c652;
+}
+.profilePic{
+  width:60px;
+}
+.instagramLink{
+  color: whitesmoke;
+  font-size: 24px;
+  border: 1px solid grey;
+}
+.hastagSearch{
+  border-radius: 4px;
+  width: 199px;
+  height: 30px;
+  border: none;
+}

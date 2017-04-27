@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1></h1>
+    <form action="/feed" method="post">
+        <input name="search" type="text" placeholder="Hashtag Search Term"/>
+        <input type="submit" value="search"/>
+    </form>
+    <% var sorted = data.sort(function(a,b){
+        return a.created > b.created ? -1 : 1
+}) %>
+    <% for(var i = 0; i < sorted.length; i++) {%>
+    <img src= "<%=sorted[i].profileURL%>"/>
+    <p>Date Created: <%=sorted[i].created%></p>
+    <h3><%=sorted[i].username%></h3>
+    <img src="<%=sorted[i].imageURL%>"/>
+    <p><%=sorted[i].caption%></p>
+    <% } %>
+</body>
+</html>
